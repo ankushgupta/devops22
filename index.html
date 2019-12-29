@@ -1,4 +1,181 @@
-m1
-m2
-f1
-m3
+    [root@git devops22]# history 
+    1  yum install git
+    2  git --version
+    3  mkdir demorepo
+    4  cd demorepo/
+    5  ls -la
+    6  git init .
+    7  ls -la
+    8  vi file1
+    9  git status
+   10  git add file1
+   11  git status
+   12  git commit -m "testing my first commit"
+   13  git status
+   14  git log
+   15  git log 14a95b8564ab8397f6eda25af39bf82f1df51098
+   16  git diff 14a95b8564ab8397f6eda25af39bf82f1df51098
+   17  git history
+   18  history 
+   19  cd..
+   20  cd ..
+	21  git clone https://github.com/ankushgupta/devops22.git
+   22  ls -l
+   23  cd devops22/
+   24  ls -l
+   25  ls la
+   26  ls -la
+   27  git remote -v
+   28  vim index.html
+   29  git status
+   30  git add .
+   31  git status
+   32  git commit -m "m1"
+   33  git push
+   34  git status
+   35  git push origin master
+   36  vim index.html 
+   37  git status
+   38  git commit -m "m2"
+   39  git add .
+   40  git commit -m "m2"
+   41  git push
+   42  git branch 
+   43  git branch -a
+   44  git branch xyz
+   45  git branch -a
+   46  git checkout xyz
+	47  git branch 
+   48  git checkout master
+   49  git checkout -b featureA
+   50  git branch
+   51  git status
+   52  git push origin featureA
+   53  vim index.html 
+   54  git status
+   55  git add .
+   56  git commit -m "f1"
+   57  git push
+   58  git checkout master
+   59  git merge featureA
+   60  git status
+   61  git push
+   62  ls -l
+   63  cat index.html 
+   64  git pull
+   65  cat index.html 
+   66  history 
+   67  ls -l
+   68  cat index.html
+   69  git branch 
+   70  git checkout xyz
+   71  echo "hello friends" > testfile1
+   72  cat testfile1 
+   73  git stash
+   74  git status
+   75  git add .
+   76  git stash
+   77  ls -l
+   78  git checlut feature
+   79  git checkout featureA
+   80  ls -l
+   81  vim index.html 
+   82  git add .
+   83  git commit -m "f3"
+   84  git push
+   85  git pull
+   86  git pull origin featureA
+   87  vim index.html 
+   88  git status
+   89  git add .
+   90  git commit -m "f3 resolve conflict"
+   91  git push
+   92  git checkout xyz
+   93  git status
+   94  git stash pop
+   95  git status
+   96  git push
+   97  git push origin xyz
+   98  git checkout featureA
+   99  git log
+   100  git revert 2c65d73dbf42d6d9d6d764de245fc1c571ea4de7
+  101  git status
+  102  cat testfile1 
+  103  git branch
+  104  rm -rf testfile1 
+  105  ls -
+  106  git status
+  107  git commit -m "delete testfile"
+  108  git status
+  109  git add .
+  110  git commit -m "delete testfile"
+  111  git rm testfile1
+  112  git status
+  113  git commit -m "delete testfile"
+  114  git status
+  115  gt log
+  116  gitlog
+  117  git log
+  118  git rvert 2c65d73dbf42d6d9d6d764de245fc1c571ea4de7
+  119  git revert 2c65d73dbf42d6d9d6d764de245fc1c571ea4de7
+  120  git reset --hard 2c65d73dbf42d6d9d6d764de245fc1c571ea4de7
+  121  vim index.html 
+  122  git log
+  123  git checkout xyz
+  130  git log
+  131  git config --list
+  132  cd ..
+  133  rm -rf devops22/
+  134  git clone https://github.com/ankushgupta/devops22.git
+  135  cd devops22/
+  136  ls -l
+  137  git branch -a
+  138  git checkout xyz
+  139  ls -l
+  140  git log
+  141  git revert  8eca5a6ccb3aa2960880a98496f581a84b6d4aae
+  142  git log
+  143  git revert --continue 8eca5a6ccb3aa2960880a98496f581a84b6d4aae
+  144  git checkout master
+  145  git checkout master -f
+  146  git log
+  147  git revert 97fa54ef62190e5533a0ce7578312c7dd808761b
+  148  cat index.html 
+  149  git log
+  150  git diff 2c65d73dbf42d6d9d6d764de245fc1c571ea4de7 97fa54ef62190e5533a0ce7578312c7dd808761b
+  151  git branch 
+  152  git log
+  153  git log --help
+  154  git log --pretty=oneline
+  156  gut checkout fratureA
+  157  git checkout featureA
+  158  git log --pretty=oneline
+  159  git checkout master
+  160  git checkout master -f
+  161  git branch
+  162  git checkout -b featureB
+  163  git push origin featureB
+  164  git checkout master
+  165  git pull
+  166  git status
+  167  vim index.html 
+  168  git pull origin master
+  169  vim index.html 
+  170  git log
+  171  git push
+  172  vim index.html 
+  173  git add .
+  174  git commit -m "m3"
+  175  git push
+  176  git log
+  177  git checkout featureB
+  178  git log
+  179  vim index.html 
+  180  git add ..
+  181  git add .
+  182  git commit -m "f3"
+  183  git push
+  184  git rebase merge
+  185  git rebase master
+  186  git log
+  187  history 
