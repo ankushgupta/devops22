@@ -1,0 +1,201 @@
+root@kubemaster:~# history
+    1  free -m
+    2  apt-get install docker.io
+    3  docker --version
+    4  systemctl enable docker
+    5  apt-install curl
+    6  apt-get install curl
+    7  curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
+    8  apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+    9  apt-get install software-properties-common
+   10  apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+   11  apt-get install kubeadm
+   12  kubeadm version
+   13  kubeadm  init --pod-network-cidr=10.244.0.0/16
+   14  cat /etc/kubernetes/admin.conf
+   15  history
+   16  kubectl --help
+   17  kubectl cluster-info
+   18  kubectl get node
+   19  kubectl get pods
+   20  docker ps
+   21  kubectl get namespace
+   22  kubectl get pods -n kube-system
+   23  kubectl get node
+   24  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+   25  kubectl get node
+   26  kubectl get namespace
+   27  kubectl get pods
+   28  kubectl get service
+   29  kubectl get pods -n kube-system
+   30  kubectl create namespace demo
+   31  kubectl get namespace
+   32  kubectl run --image=jenkins jenkins
+   33  kubectl get deployment
+   34  kubectl descrieb deployment jenkins
+   35  kubectl describe  deployment jenkins
+   36  kubectl scale --replicas=4 deployment/jenkins
+   37  kubectl get pods
+   38  kubectl get pods -o wide
+   39  kubectl get nod
+   40  kubectl get node
+   41  kubectl get pods -o wide
+   42  kubectl get pods
+   43  kubectl get pods -o wide
+   44  kubectl delete pod jenkins-666b9db69-5qxl6
+   45  kubectl describe  deployment jenkins
+   46  kubectl set image deployment/jenkins jenkins=jenkins:alpine
+   47  kubectl describe  deployment jenkins
+   48  kubectl get pods -o wide
+   49  kubectl rollout history deployment/jenkins
+   50  kubectl get imagestream
+   51  kubectl get is
+   52  kubectl --help
+   53  kubectl get all
+   54  kubectl describe pod jenkins-784856d5b6-vgjq5
+   55  vim namepsace.yaml
+   56  kubectl create -f namepsace.yaml
+   57  kubectl get namespace
+   58  kubectl delete -f namepsace.yaml
+   59  kubectl get namespace
+   60  vim deployment.yaml
+   61  cat deployment.yaml
+   62  kubectl create -f deployment.yaml
+   63  kubectl get pods -n deployment-demo
+   64  vim service.yaml
+   65  kubectl create -f service.yaml
+   66  kubectl get service -n deployment-demo -o wide
+   67  mkdir  /data
+   68  vim pv.yaml
+   69  kubectl create -f pv.yaml
+   70  kubectl get pv
+   71  vim pvc.yaml
+   72  kubectl create  -f pvc.yaml
+   73  kubectl get pvc
+   74  kubectl get pv
+   75  kubectl get pvc my-volclaim -n deployment-demo
+   76  kubectl --help
+   77  vim deployment.yaml
+   78  vim deploymentpvc.yaml
+   79  kubectl create -f deploymentpvc.yaml
+   80  vim deploymentpvc.yaml
+   81  kubectl create -f deploymentpvc.yaml
+   82  vim deploymentpvc.yaml
+   83  kubectl create -f deploymentpvc.yaml
+   84  vim deploymentpvc.yaml
+   85  kubectl create -f deploymentpvc.yaml
+   86  kubectl apply -f deploymentpvc.yaml
+   87  kubectl describe deployment nginx -n deployment-demo
+   88  kubectl get pods -n deployment-demo
+   89  kubectl describe pod nginx-77865774f-qjwhf
+   90  kubectl describe pod nginx-77865774f-qjwhf -n deployment-demo
+   91  kubectl delete -f deploymentpvc.yaml
+   92  kubectl get pods -n deployment-demo
+   93  kubectl cretate -f deploymentpvc.yaml
+   94  kubectl create  -f deploymentpvc.yaml
+   95  kubectl get pods -n deployment-demo
+   96  kubectl exec -it nginx-77865774f-986ls -- /bin/bash
+   97  kubectl exec -it nginx-77865774f-986ls -- /bin/bash -n deployment-demo
+   98  kubectl -n deployment-demo  exec -it nginx-77865774f-986ls -- /bin/bash
+   99  history
+
+
+
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: deployment-demo
+  labels:
+    apps: web-based
+  annotations:
+    type: demo
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+  namespace: deployment-demo
+  annotations:
+    monitoring: "true"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+		volumeMounts:
+		- name: pvc1
+		  mountPath: /tmp
+		  
+	  volumes:
+	  - name: pvc1
+	    persistentVolumeClaim:
+		  claimName: my-volclaim
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginx
+  name: nginx
+  namespace: deployment-demo
+spec:
+  ports:
+  - nodePort: 30500
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx
+  type: NodePort
+  
+  root@kumaster ~]# cat pv.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: myvol
+  namespace: deployment-demo
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data"
+    
+    root@kumaster ~]# cat pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-vol
+  namespace: deployment-demo
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+    
