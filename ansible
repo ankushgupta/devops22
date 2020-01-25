@@ -1,0 +1,149 @@
+ 45  yum install ansible
+   46  cd /etc/ansible/
+   47  ls -l
+   48  vim ansible.cfg 
+   49  vi hosts
+   50  df -h
+   51  ansible localhost -m command -a 'df -h'
+   52  ssh localhost
+   53  cat hosts
+   54  vi hosts 
+   55  vi ansible.cfg 
+   56  ansible --help
+   57  :q!
+   58  ansible localhost ansible_connection=local -m command -a 'df -h'
+   59  vim hosts
+   60  vim hosts 
+   61  ansible localhost -m command -a 'df -h'
+   62  df -h
+   63  ssh-keygen
+   64  cd ~/.ssh/
+   65  ls -l
+   66  cat id_rsa.pub 
+   67  vi authorized_keys 
+   68  ssh localhost
+   69  vi /etc/ssh/sshd_config
+   70  service sshd restart
+   71  ssh localhost
+   72  vi hosts
+   73  cd /etc/ansible/
+   74  vim hosts 
+   75  ansible localhost -m command -a 'df -h'
+   76  ansible localhost -m setup
+   77  ansible localhost -m shell 'df -h'
+   78  ansible localhost -m shell  -a 'df -h'
+  78  ansible localhost -m shell  -a 'df -h'
+   79  ansible localhost -m command -a 'df -h'
+   80  env
+   81  ansible localhost -m command -a 'echo $TERM'
+   82  echo $TERM
+   83  ansible localhost -m yum -a 'name=telnet state=present'
+   84  ansible localhost -m command -a 'dfsfsdfsd -h'
+   85  vim playbook1.yaml
+   86  ansible-playbook playbook1.yaml --syntax-check
+   87  vim playbook1.yaml
+   88  ansible-playbook playbook1.yaml --syntax-check
+   89  ansible-playbook playbook1.yaml 
+   90  vim playbook1.yaml
+   91  ansible-playbook playbook1.yaml 
+   92  yum remove git httpd
+   93  ansible-playbook playbook1.yaml 
+   94  rpm -qa | grep -i httpd
+   95  yum remove httpd24-tools
+--More--
+ 96  ansible-playbook playbook1.yaml 
+   97  vim playbook1.yaml 
+   98  ansible-playbook playbook1.yaml 
+   99  rpm -qa | grep -i git
+  100  cat ~/.ssh/authorized_keys 
+  101  vi hoss
+  102  vi hosts
+  103  ansible demo -m command -a 'df -h'
+  104  vim playbook1.
+  105  vim playbook1.yaml 
+  106  ansible-playbook -i hosts webserver playbook1.yaml 
+  107  vim playbook1.yaml 
+  108  ansible-playbook -i hosts playbook1.yaml 
+  109  vim playbook1.yaml 
+  110  ansible-playbook -i hosts playbook1.yaml 
+  
+  115  ansible-galaxy init apache --offline
+  116  ls -l
+  117  cd apache/
+  118  ls -l
+  119  cd tasks/
+  120  ls -l
+  121  vim main.yml 
+  122  cd ..
+  123  cd files/
+  124  ls -l
+  125  mkdir html
+  126  cd html/
+  127  ls -l
+  128  echo "hello devops" > index.html
+  129  ls -l
+  130  cd ../..
+  131  ls -l
+  132  cd ..
+  133  ls- l
+   125  mkdir html
+  126  cd html/
+  127  ls -l
+  128  echo "hello devops" > index.html
+  129  ls -l
+  130  cd ../..
+  131  ls -l
+  132  cd ..
+  133  ls- l
+  134  ls -l
+  135  vi httpd.yml
+  136  ansible-playbook httpd.yml 
+  137  vim roles/apache/tasks/main.yml 
+  138  ansible-playbook httpd.yml 
+  139  cd roles/apache/
+  140  ls -l
+  141  cd tasks/
+  142  ls -l
+  143  vim main.yml 
+  144  pwd
+  145  cd ..
+  146  cd handlers/
+  147  vimm
+  148  vim main.yml 
+  149  cd ../..
+  150  ls -l
+  151  cd ..
+  152  ansible-playbook httpd.yml 
+   153  vim playbook2.yml
+  154  ansible-playbook playbook2.yml 
+  155  vim playbook2.yml 
+  156  ansible-playbook playbook2.yml 
+  157  vim playbook2.yml 
+  158  ansible-playbook playbook2.yml 
+  159  cd roles/
+  160  ansible-galaxy init motd --offline
+  161  ls -l
+  162  cd motd/
+  163  ls -l
+  164  cat /etc/motd
+  165  ssh localhost
+  166  pwd
+  167  cd tasks/
+  168  vim main.yml 
+  169  cd ..
+  170  cd templates/
+  171  vim motd.j2
+  172  cd ..
+  173  cd defaults/
+  174  vim main.yml 
+  175  cd ..
+  176  vim httpd.
+  177  vim httpd.yml 
+   178  ansible-playbook httpd.yml 
+  179  vim httpd.yml 
+  180  ansible-playbook httpd.yml 
+  181  history 
+  182  history | more
+  
+  
+  
