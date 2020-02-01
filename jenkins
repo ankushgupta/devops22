@@ -1,0 +1,67 @@
+root@jenkinsmas M2]# history 
+    1  yum search openjdk
+    2  yum install java-1.8.0-openjdk-devel.x86_64 java-1.8.0-openjdk.x86_64
+    3  yum install wget -y
+    4  wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+    5  rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+    6  cd /etc/yum.repos.d/
+    7  ls -l
+    8  yum install jenkins
+    9  cd //etc/sysconfig/
+   10  vim jenkins 
+   11  systemctl start jenkins
+   12  systemctl status jenkins
+   13  cd /var/lib/jenkins/
+   14  ls -
+   15  ls -l
+   16  cat /var/lib/jenkins/secrets/initialAdminPassword
+   17  ls -l
+   18  cd workspace/
+   19  ls- l
+   20  ls -l
+   21  cd demo1/
+   22  ls -l
+   23  yum install git
+   24  cd ..
+   25  ls -l
+   26  cd demo_mvn/
+   27  ls -l
+   28  cd target/
+   29  ls -l
+   30  cd /var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/M2
+   31  ls -l
+   32  history 
+   
+   
+   
+   slave
+   
+   
+   
+   root@jenkinsslave12 demo_pipeline]# history 
+    1  vi /etc/ssh/sshd_config
+    2  systemctl restart sshd
+    3  useradd jenkins
+    4  passwd jenkins
+    5  visudo
+    6  su - jenkins
+    7  pwd
+    8  wget http://35.223.82.151:8080/jnlpJars/agent.jar
+    9  java -jar agent.jar -jnlpUrl http://35.223.82.151:8080/computer/slave1/slave-agent.jnlp -secret 4adbbaa02bbaa25180462ae2ab2ce8dab12d80b4bcbf0f23efc249866158670d -workDir "/root" &
+   10  docke rps
+   11  docker ps
+   12  docker login 
+   13  iptables -F
+   14  sestatus 
+   15  setenforce 0
+   16  ls -l
+   17  cd workspace/
+   18  ls -l
+   19  cd demo_pipeline
+   20  ls -l
+   21  docker build -t test .
+   22  ls -l
+   23  vim F
+   24  vim Dockerfile 
+   25  docker build -t test .
+   26  history 
