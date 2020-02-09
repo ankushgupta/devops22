@@ -199,3 +199,91 @@ spec:
     requests:
       storage: 1Gi
     
+
+dashboard
+
+kubectl apply -f  https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+
+root@kumaster ~]# cat adim
+cat: adim: No such file or directory
+[root@kumaster ~]# cat admin.yaml 
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-user
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: admin-user
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: admin-user
+  namespace: kube-system
+  
+  
+kubectl create -f admin.yaml 
+kubectl -n kube-system edit service kubernetes-dashboard  -- change CLUSTERIP to NodePort
+kubectl -n kube-system get service kubernetes-dashboard
+  
+kubectl -n kube-system get pods -o wide
+kubectl proxy &
+
+kubectl -n kube-system get secret
+kubectl -n kube-system get secret | grep -i admin-user
+kubectl -n kube-system describe admin-user-token-lvxmc
+kubectl -n kube-system describe secret admin-user-token-lvxmc  -- copy the token and use it to access the dashboard
+
+
+ingress
+
+ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.y
+aml
+
+kubectl get pods -n ingress-nginx
+
+root@kumaster ~]# cat nginx.yaml 
+kind: Service
+apiVersion: v1
+metadata:
+  name: ingress-nginx
+  namespace: ingress-nginx
+  labels:
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
+spec:
+  externalTrafficPolicy: Local
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+    - name: https
+      port: 443
+      targetPort: https
+      
+ kubectl create -f nginx.yml
+ 
+root@kumaster ~]# cat ingress.yaml 
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  namespace: deployment-demo
+  annotations: 
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: nginx
+          servicePort: 80
